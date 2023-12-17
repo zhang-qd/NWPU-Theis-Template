@@ -279,9 +279,9 @@ and the derived files           yanputhesis.ins,
     Yet Another Thesis Template of \\ Northwestern Polytechnical University
 }                                                           % 请自行断行
 \author{\blindreview{张三丰}}{\blindreview{Sanfeng Zhang}}  % 姓名（添加盲评标记）
-\date{2022年6月}{Jun 2022}                                  % 答辩日期
-\school{数学与统计学院}{School of Mathematics and Statistics}% 学院
-\major{数学}{Philosophy in Mathematics}                     % 专业 博士请添加 Ph
+\date{2023年12月17日}{November 17, 2023}
+\school{航空学院}{School of Aeronautics}% 学院
+\major{力学}{Philosophy in Mechanics}                     % 专业 博士请添加 Ph
 \advisor{\blindreview{李四海}}{\blindreview{Sihai Li}}      % 导师（添加盲评标记）
 \studentnumber{2016123456}                                  % 学号
 \funding{本研究得到玄学基金（编号23336666）资助。}{         % 基金资助
@@ -1250,10 +1250,12 @@ int main()
     \newcommand{\nwpu@chs@doctitle}{本科毕业设计论文}       % 文档名和页眉
     \newcommand{\nwpu@chs@header}{{\nwpu@chs@schoolname}本科毕业设计论文}
 \else                                                       % 其他页眉统一设置
-    \newcommand{\nwpu@chs@doctitle}{{\nwpu@chs@degree}学位论文}
+    %%\newcommand{\nwpu@chs@doctitle}{{\nwpu@chs@degree}学位论文}
+    \newcommand{\nwpu@chs@doctitle}{日常手稿文件}
     \newcommand{\nwpu@chs@header}{\nwpu@chs@schoolname\nwpu@chs@doctitle}
 \fi                                                         %
-\newcommand{\nwpu@eng@doctitle}{\nwpu@eng@degree Thesis}    % 英文文档名和页眉
+%%\newcommand{\nwpu@eng@doctitle}{\nwpu@eng@degree Thesis}    % 英文文档名和页眉
+\newcommand{\nwpu@eng@doctitle}{Daily Manuscript Document}    % 英文文档名和页眉
 \newcommand{\nwpu@eng@header}{\nwpu@eng@doctitle of \nwpu@eng@schoolname}
 %%-----------------------------------------------------------------------------%
 \if@npu@lang@chs                                            % 定制中文特殊页面
@@ -1520,9 +1522,9 @@ int main()
 %% 生成标题页
 %%-----------------------------------------------------------------------------%
 \renewcommand{\maketitle}{                                  % 重制 maketitle
-    \make@nwpu@coverpage                                    % 封皮页
+    %%\make@nwpu@coverpage                                    % 封皮页
     \make@nwpu@chs@title                                    % 中文标题页
-    \make@nwpu@eng@title                                    % 英文标题页
+    %%\make@nwpu@eng@title                                    % 英文标题页
 }                                                           %
 %%=============================================================================%
 %    \end{macrocode}

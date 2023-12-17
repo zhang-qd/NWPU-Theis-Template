@@ -429,10 +429,12 @@
     \newcommand{\nwpu@chs@doctitle}{本科毕业设计论文}       % 文档名和页眉
     \newcommand{\nwpu@chs@header}{{\nwpu@chs@schoolname}本科毕业设计论文}
 \else                                                       % 其他页眉统一设置
-    \newcommand{\nwpu@chs@doctitle}{{\nwpu@chs@degree}学位论文}
+    %%\newcommand{\nwpu@chs@doctitle}{{\nwpu@chs@degree}学位论文}
+    \newcommand{\nwpu@chs@doctitle}{日常手稿文件}
     \newcommand{\nwpu@chs@header}{\nwpu@chs@schoolname\nwpu@chs@doctitle}
 \fi                                                         %
-\newcommand{\nwpu@eng@doctitle}{\nwpu@eng@degree Thesis}    % 英文文档名和页眉
+%%\newcommand{\nwpu@eng@doctitle}{\nwpu@eng@degree Thesis}    % 英文文档名和页眉
+\newcommand{\nwpu@eng@doctitle}{Daily Manuscript Document}    % 英文文档名和页眉
 \newcommand{\nwpu@eng@header}{\nwpu@eng@doctitle of \nwpu@eng@schoolname}
 %%-----------------------------------------------------------------------------%
 \if@npu@lang@chs                                            % 定制中文特殊页面
@@ -653,9 +655,9 @@
 %% 生成标题页
 %%-----------------------------------------------------------------------------%
 \renewcommand{\maketitle}{                                  % 重制 maketitle
-    \make@nwpu@coverpage                                    % 封皮页
+    %%\make@nwpu@coverpage                                    % 封皮页
     \make@nwpu@chs@title                                    % 中文标题页
-    \make@nwpu@eng@title                                    % 英文标题页
+    %%\make@nwpu@eng@title                                    % 英文标题页
 }                                                           %
 %%=============================================================================%
 %%=============================================================================%
