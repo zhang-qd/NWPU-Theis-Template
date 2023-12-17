@@ -10,6 +10,10 @@ sample: close wipesample clean texsample opensample
 
 samplebib: close wipesample clean texsamplebib opensample
 
+mySample: clean texsample opensample
+
+mySamplebib: clean texsamplebib opensample
+
 makecls: $(MAIN).dtx
 	$(TEX) $<
 	./zhmakeindex -s gglo.ist -o $(MAIN).gls $(MAIN).glo
@@ -28,7 +32,7 @@ else
 endif
 
 ifeq ($(PLATFORM), Windows)
-    RM = del /s /f
+    RM = rm -rf#del /s /f
     OPEN = cmd /c start
     CLOSE = cmd /c taskkill /im Acrobat.exe /t /f
 else
