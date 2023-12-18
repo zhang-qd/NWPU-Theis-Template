@@ -189,6 +189,32 @@ and the derived files           yanputhesis.ins,
 \usepackage{metalogo}                                       % 软件标志
 \usepackage[binary-units=true]{siunitx}                     % 物理量单位
 \usepackage{amsmath}                                        % 基础数学库
+
+\usepackage{algorithm}                                      % 流程伪代码
+\usepackage{algorithmicx}                                   % 流程伪代码
+\usepackage{algpseudocode}                                  % 流程伪代码
+\renewcommand{\algorithmicrequire}{\textbf{输入:}} %\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{输出:}} %\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{算法~\thealgorithm} ##2\par}%{\raggedright\textbf{\fname@algorithm~\thealgorithm} ##2\par}
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+   \end{center}
+  }
+\makeatother
 %%=============================================================================%
 %% 参考文献（也可以是独立文件）
 %%-----------------------------------------------------------------------------%
@@ -337,7 +363,53 @@ and the derived files           yanputhesis.ins,
 \chapter{绪论}
 \chaptermark{绪论}
 \section{这是中标题}
-emmmm
+伪代码测试\autoref{alg:GMRES-origin}。
+
+
+\begin{breakablealgorithm}
+    \caption{GMRES迭代算法计算流程}
+    \label{alg:GMRES-origin}
+    \begin{algorithmic}[1]
+        \Require{$\vec{x}_{0}, \varepsilon$}
+        \Ensure{$\vec{x}^{*}$}
+        \State $\vec{r}_{0} = \vec{b} - A \vec{x}_{0}, \beta = \left \| \vec{r}_{0} \right \|_{2}$
+        \If {$\beta / {\left \| \vec{b} \right \|_{2}} < \varepsilon$}
+        \State $\vec{x}^{*} = \vec{x}_{0}$
+        \State stop
+        \EndIf
+        \State $\vec{v}_{0} = \vec{r}_{0} / \beta, \vec{\xi} = \beta \vec{e}_{1}, m = 0$
+        \For {$j = 0, 1, 2, 3, \cdots, $}
+        \State $m = j$
+        \State $\vec{v}_{j + 1} = A \vec{v}_{j}$
+        \For {$i = 0, 1, 2, 3, \cdots, j$}
+        \State $h_{i,j} = \vec{v}_{j + 1} \cdot \vec{v}_{i}$
+        \State $\vec{v}_{j + 1} = \vec{v}_{j + 1} - h_{i,j} \vec{v}_{i}$
+        \EndFor
+        \State $h_{j + 1,j} = \left \| \vec{v}_{j + 1} \right \|_{2}$
+        \For {$i = 0, 1, 2, 3, \cdots, j - 1$}
+        \State $\alpha = c_{i} h_{i,j} + s_{i} h_{i + 1,j}$
+        \State $h_{i + 1,j} = -s_{i} h_{i,j} + c_{i} h_{i + 1,j}$
+        \State $h_{i,j} = \alpha$
+        \EndFor
+        \If {$h_{j + 1, j} \neq 0$}
+        \State $\vec{v}_{j + 1} = \vec{v}_{j + 1} / h_{j + 1,j}$
+        \Else
+        \State break
+        \EndIf
+        \State $\delta = \sqrt{h_{j,j}^2 + h_{j + 1,j}^2}, s_{j} = h_{j + 1,j} / \delta, c_{j} = h_{j,j} / \delta$
+        \State $h_{j,j} = c_{j} h_{j,j} + s_{j} h_{j + 1,j}, h_{j + 1,j} = 0$
+        \State $\xi_{j + 1} = -s_{j} \xi_{j}, \xi_{j} = c_{j} \xi_{j}$
+        \If {$\left | \xi_{j + 1} \right | / \beta < \varepsilon$}
+        \State break
+        \EndIf
+        \EndFor
+        \State 计算$H^{(m)}\vec{y}^{(m)} = \vec{\xi}^{(m)}$，其中$H^{(m)}$为上三角阵，且$H^{(m)}=H\left(0:m, 0:m\right), \vec{\xi}^{(m)} = \vec{\xi}\left(0:m\right)$
+        \State 计算近似解$\vec{x}^{*} = \vec{x}_{0} + V_{m}\vec{y}^{(m)}$，其中$V_{m} = \left[\vec{v}_{0}, \vec{v}_{1}, \vec{v}_2, \cdots, \vec{v}_{m}\right]$
+    \end{algorithmic}
+\end{breakablealgorithm}
+
+
+
 \subsection{这是小标题}
 emmmmm
 \subsubsection{这是小小标题}
