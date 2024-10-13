@@ -182,7 +182,7 @@
 \dottedcontents{section}[1.16cm]{}{1.8em}{5pt}              % 定义目录中各级标题
 \dottedcontents{subsection}[2.00cm]{}{2.7em}{5pt}           % 之间的格式以及缩进
 \dottedcontents{subsubsection}[2.86cm]{}{3.4em}{5pt}        %
-\newcommand{\nwpu@chs@chaptercname}[1]{第 #1 章}            % 目录章节中文标题
+\newcommand{\nwpu@chs@chaptercname}[1]{第{#1}章}            % 目录章节中文标题
 \newcommand{\nwpu@eng@chaptercname}[1]{Chapter #1}          % 目录章节英文标题
 \if@npu@lang@chs                                            % 中文本地化显示
     \titlecontents{chapter}[0pt]{\fSong\sLgXiaosi\vspace{   %
@@ -398,7 +398,7 @@
     \renewcommand{\nomname}{Symbols}                        %
 \fi                                                         %
 %%-----------------------------------------------------------------------------%
-\renewcommand{\chaptername}{第 \thechapter 章}              % 章节名
+\renewcommand{\chaptername}{第{\thechapter}章}              % 章节名
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}      % 图编号格式
 \renewcommand{\thesubfigure}{(\alph{subfigure})}            % 子图编号格式
 \renewcommand{\thetable}{\thechapter-\arabic{table}}        % 图编号格式
@@ -531,7 +531,7 @@
                 \begin{tabular}{|c|c|}\hline                %
                     {学 \hfill 校 \hfill 代 \hfill 码} & 10699     \\ \hline
                     {分   \hfill    类    \hfill   号} & V211.3      \\ \hline
-                    {密           \hfill           级} & 公开      \\ \hline
+                    {密           \hfill           级} &       \\ \hline
                     {学           \hfill           号} & \nwpu@uid \\ \hline
                 \end{tabular}                               %
             \end{minipage} \par                             % 排版结束
@@ -632,7 +632,7 @@
         \linespread{1.2} \fEng \sXiaosan \par               % 1.2 倍行距
         \vspace{1\baselineskip}                             % 1 * 22pt * 1.2
         \begin{center}                                      %
-            \fEng \sErhao \textbf{\nwpu@eng@title} \par     %
+            \fEng \sErhao \textbf{Title:} \sErhao \textbf{\nwpu@eng@title} \par     %
             \fSong \sXiaoer \vspace{3\baselineskip}         %
             \fEng \sXiaosan \textbf{By} \par                %
             \fEng \sXiaosan \textbf{\nwpu@eng@author} \par  %
@@ -830,15 +830,15 @@
         \sffamily\fHei\sSanhao{\appendixname~\thechapter}}{20pt}{\sSanhao}
     \renewcommand{\thechapter}{\Alph{chapter}}              %
     \renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
-    \renewcommand{\theequation}{\alph{chapter}-\arabic{equation}}
-    \renewcommand{\thetable}{\alph{chapter}-\arabic{table}} %
-    \renewcommand{\thefigure}{\alph{chapter}-\arabic{figure}}
-    \renewcommand{\thetheorem}{\alph{chapter}.\arabic{theorem}}
-    \renewcommand{\theaxiom}{\alph{chapter}.\arabic{axiom}} %
-    \renewcommand{\thecorollary}{\alph{chapter}.\arabic{corollary}}
-    \renewcommand{\thelemma}{\alph{chapter}.\arabic{lemma}} %
-    \renewcommand{\thedefinition}{\alph{chapter}.\arabic{definition}}
-    \renewcommand{\theexample}{\alph{chapter}.\arabic{example}}
+    \renewcommand{\theequation}{\Alph{chapter}-\arabic{equation}}
+    \renewcommand{\thetable}{\Alph{chapter}-\arabic{table}} %
+    \renewcommand{\thefigure}{\Alph{chapter}-\arabic{figure}}
+    \renewcommand{\thetheorem}{\Alph{chapter}.\arabic{theorem}}
+    \renewcommand{\theaxiom}{\Alph{chapter}.\arabic{axiom}} %
+    \renewcommand{\thecorollary}{\Alph{chapter}.\arabic{corollary}}
+    \renewcommand{\thelemma}{\Alph{chapter}.\arabic{lemma}} %
+    \renewcommand{\thedefinition}{\Alph{chapter}.\arabic{definition}}
+    \renewcommand{\theexample}{\Alph{chapter}.\arabic{example}}
 }                                                           %
 %%=============================================================================%
 %%=============================================================================%
