@@ -82,6 +82,7 @@
     pdffitwindow=true,                                      % 缩放以适应窗口大小
     pdfstartview={FitH},                                    % 适合窗口宽度
     pdfnewwindow=true,                                      % 以新窗口打开链接
+    bookmarksdepth=5,                                       % 设置书签的深度
 }                                                           %
 \RequirePackage{bookmark}                                   %
 %%-----------------------------------------------------------------------------%
