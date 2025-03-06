@@ -24,6 +24,7 @@
 \newif\if@npu@type@phd                                      % 博士版本标记
 \newif\if@npu@type@mst                                      % 硕士版本标记
 \newif\if@npu@type@bcl                                      % 本科版本标记
+\newif\if@npu@academic % 学术学位标记
 \newif\if@npu@output@blindreview                            % 盲评版本标记
 \newif\if@npu@font@adobe                                    % Adobe 字体标记
 \newif\if@npu@font@winfonts                                 % 强制使用 Win 字体
@@ -37,9 +38,11 @@
 \DeclareOptionX{blindreview}[true]{\csname @npu@output@blindreview#1\endcsname}
 \DeclareOptionX{adobe}[true]{\csname @npu@font@adobe#1\endcsname}
 \DeclareOptionX{winfonts}[true]{\csname @npu@font@winfonts#1\endcsname}
+\DeclareOptionX{academic}[true]{\csname @npu@academic#1\endcsname}
 \DeclareOptionX*{\PassOptionsToClass{\CurrentOption}{book}} % 传递参数到 book 类
 \ExecuteOptionsX{lang=chs}                                  % 默认为中文版本
 \ExecuteOptionsX{degree=phd}                                % 默认为博士版本
+\ExecuteOptionsX{academic=true}                             % 默认为学术型硕博
 \ExecuteOptionsX{blindreview=false}                         % 默认不开启盲评模式
 \ExecuteOptionsX{adobe=false}                               % 默认不用 Adobe 字体
 \ExecuteOptionsX{winfonts=false}                            % 默认不开启强制选项
@@ -434,6 +437,13 @@
     \newcommand{\nwpu@chs@doctitle}{日常手稿文件}
     \newcommand{\nwpu@chs@header}{\nwpu@chs@schoolname\nwpu@chs@doctitle}
 \fi                                                         %
+\if@npu@academic % 控制内封模板的首项名称
+\newcommand{\nwpu@chs@innerCoverFirstOption}{学科专业}  % 学术学位应该是学科专业
+\newcommand{\nwpu@chs@outerCoverFirstOption}{学{\enspace}科{\enspace}专{\enspace}业}
+\else
+\newcommand{\nwpu@chs@innerCoverFirstOption}{专业领域}  % 专业学位应该是专业领域
+\newcommand{\nwpu@chs@outerCoverFirstOption}{专{\enspace}业{\enspace}领{\enspace}域}
+\fi
 %%\newcommand{\nwpu@eng@doctitle}{\nwpu@eng@degree Thesis}    % 英文文档名和页眉
 \newcommand{\nwpu@eng@doctitle}{Daily Manuscript Document}    % 英文文档名和页眉
 \newcommand{\nwpu@eng@header}{\nwpu@eng@doctitle of \nwpu@eng@schoolname}
@@ -468,6 +478,7 @@
 \newcommand{\nwpu@chs@school}{\chs@space}                   % 学院（中文）
 \newcommand{\nwpu@chs@major}{\chs@space}                    % 专业（中文）
 \newcommand{\nwpu@chs@advisor}{\chs@space}                  % 导师（中文）
+\newcommand{\nwpu@chs@advisorAcademicRank}{\chs@space}      % 导师职称（中文）
 \newcommand{\nwpu@chs@funding}{\chs@space}                  % 基金赞助（中文）
 %%-----------------------------------------------------------------------------%
 \newcommand{\nwpu@eng@title}{\chs@space}                    % 标题（英文）
@@ -476,6 +487,7 @@
 \newcommand{\nwpu@eng@school}{\chs@space}                   % 学院（英文）
 \newcommand{\nwpu@eng@major}{\chs@space}                    % 专业（英文）
 \newcommand{\nwpu@eng@advisor}{\chs@space}                  % 导师（英文）
+\newcommand{\nwpu@eng@advisorAcademicRank}{\chs@space}      % 导师职称（英文）
 \newcommand{\nwpu@eng@funding}{\chs@space}                  % 基金赞助（英文）
 %%-----------------------------------------------------------------------------%
 \newcommand{\nwpu@uid}{2000123456}                          % default 学号
@@ -505,6 +517,10 @@
     \renewcommand{\nwpu@chs@advisor}{#1}                    %
     \renewcommand{\nwpu@eng@advisor}{#2}                    %
 }                                                           %
+\newcommand{\advisorAcademicRank}[2]{                       % 导师学术等级
+\renewcommand{\nwpu@chs@advisorAcademicRank}{#1}        %
+\renewcommand{\nwpu@eng@advisorAcademicRank}{#2}        %
+}
 \newcommand{\funding}[2]{                                   % 设置基金资助
     \renewcommand{\nwpu@chs@funding}{#1}                    %
     \renewcommand{\nwpu@eng@funding}{#2}                    %
@@ -562,11 +578,11 @@
             \sSanhao \fSong \begin{minipage}{12.5cm}        %
                 \noindent                                   %
                 \makebox[\coverpage@detailwidth][s]{        %
-                \bf 学{\enspace}科{\enspace}专{\enspace}业}{%
+                \bf \nwpu@chs@outerCoverFirstOption}{%
                 \uline{\hfill \makebox{\bf \nwpu@chs@major} \hfill}} \par
                 \makebox[\coverpage@detailwidth][s]{        %
                 \bf 指{\enspace}导{\enspace}教{\enspace}师}{%
-                \uline{\hfill \makebox{\bf \nwpu@chs@advisor} \hfill}} \par
+                \uline{\hfill \makebox{\bf \nwpu@chs@advisor\nwpu@chs@advisorAcademicRank} \hfill}} \par
                 \makebox[\coverpage@detailwidth][s]{        %
                 \bf 培{\enspace}养{\enspace}单{\enspace}位}{%
                 \uline{\hfill \makebox{\bf \nwpu@chs@school} \hfill}} \par
@@ -614,9 +630,9 @@
             \hspace{-1cm}                                   %
             \copy123\kern-\wd123\box124 \fSong \sWuhao \par % 排版结束
             \vspace{7\baselineskip}                         % 7 * 10.5pt * 1.5
-            \sSanhao 学科专业：\coverunderline[5.5cm]{\nwpu@chs@major} \\
+            \sSanhao \nwpu@chs@innerCoverFirstOption：\coverunderline[5.5cm]{\nwpu@chs@major} \\
             \sSanhao 作{\qquad}者：\coverunderline[5.5cm]{\nwpu@chs@author} \\
-            \sSanhao 指导教师：\coverunderline[5.5cm]{\nwpu@chs@advisor} \\
+            \sSanhao 指导教师：\coverunderline[5.5cm]{\nwpu@chs@advisor\nwpu@chs@advisorAcademicRank} \\
             \fSong \sWuhao \par                             %
             \vspace{2\baselineskip}                         % 2 * 10.5pt * 1.5
             \fSong \sSanhao \nwpu@chs@date                  %
@@ -636,7 +652,7 @@
             \fSong \sXiaoer \vspace{3\baselineskip}         %
             \fEng \sXiaosan \textbf{By} \par                %
             \fEng \sXiaosan \textbf{\nwpu@eng@author} \par  %
-            \fEng \sXiaosan \textbf{Under the Supervision of Professor} \\
+            \fEng \sXiaosan \textbf{Under the Supervision of \nwpu@eng@advisorAcademicRank} \\
             \fEng \sXiaosan \textbf{\nwpu@eng@advisor} \par %
             \fSong \sSanhao \vspace{4\baselineskip}         %
             \fEng \sXiaosan A Dissertation Submitted to \\  %
