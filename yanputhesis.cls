@@ -24,7 +24,7 @@
 \newif\if@npu@type@phd                                      % 博士版本标记
 \newif\if@npu@type@mst                                      % 硕士版本标记
 \newif\if@npu@type@bcl                                      % 本科版本标记
-\newif\if@npu@academic % 学术学位标记
+\newif\if@npu@academic                                      % 学术学位标记
 \newif\if@npu@output@blindreview                            % 盲评版本标记
 \newif\if@npu@font@adobe                                    % Adobe 字体标记
 \newif\if@npu@font@winfonts                                 % 强制使用 Win 字体
@@ -437,12 +437,12 @@
     \newcommand{\nwpu@chs@doctitle}{日常手稿文件}
     \newcommand{\nwpu@chs@header}{\nwpu@chs@schoolname\nwpu@chs@doctitle}
 \fi                                                         %
-\if@npu@academic % 控制内封模板的首项名称
-\newcommand{\nwpu@chs@innerCoverFirstOption}{学科专业}  % 学术学位应该是学科专业
-\newcommand{\nwpu@chs@outerCoverFirstOption}{学{\enspace}科{\enspace}专{\enspace}业}
+\if@npu@academic                                            % 控制内封模板的首项名称
+    \newcommand{\nwpu@chs@innerCoverFirstOption}{学科专业}   % 学术学位应该是学科专业
+    \newcommand{\nwpu@chs@outerCoverFirstOption}{学{\enspace}科{\enspace}专{\enspace}业}
 \else
-\newcommand{\nwpu@chs@innerCoverFirstOption}{专业领域}  % 专业学位应该是专业领域
-\newcommand{\nwpu@chs@outerCoverFirstOption}{专{\enspace}业{\enspace}领{\enspace}域}
+    \newcommand{\nwpu@chs@innerCoverFirstOption}{专业领域}   % 专业学位应该是专业领域
+    \newcommand{\nwpu@chs@outerCoverFirstOption}{专{\enspace}业{\enspace}领{\enspace}域}
 \fi
 %%\newcommand{\nwpu@eng@doctitle}{\nwpu@eng@degree Thesis}    % 英文文档名和页眉
 \newcommand{\nwpu@eng@doctitle}{Daily Manuscript Document}    % 英文文档名和页眉
@@ -518,8 +518,8 @@
     \renewcommand{\nwpu@eng@advisor}{#2}                    %
 }                                                           %
 \newcommand{\advisorAcademicRank}[2]{                       % 导师学术等级
-\renewcommand{\nwpu@chs@advisorAcademicRank}{#1}        %
-\renewcommand{\nwpu@eng@advisorAcademicRank}{#2}        %
+    \renewcommand{\nwpu@chs@advisorAcademicRank}{#1}        %
+    \renewcommand{\nwpu@eng@advisorAcademicRank}{#2}        %
 }
 \newcommand{\funding}[2]{                                   % 设置基金资助
     \renewcommand{\nwpu@chs@funding}{#1}                    %
@@ -547,7 +547,7 @@
                 \begin{tabular}{|c|c|}\hline                %
                     {学 \hfill 校 \hfill 代 \hfill 码} & 10699     \\ \hline
                     {分   \hfill    类    \hfill   号} & V211.3      \\ \hline
-                    {密           \hfill           级} &       \\ \hline
+                    {密           \hfill           级} & 公开       \\ \hline
                     {学           \hfill           号} & \nwpu@uid \\ \hline
                 \end{tabular}                               %
             \end{minipage} \par                             % 排版结束
@@ -582,7 +582,7 @@
                 \uline{\hfill \makebox{\bf \nwpu@chs@major} \hfill}} \par
                 \makebox[\coverpage@detailwidth][s]{        %
                 \bf 指{\enspace}导{\enspace}教{\enspace}师}{%
-                \uline{\hfill \makebox{\bf \nwpu@chs@advisor\nwpu@chs@advisorAcademicRank} \hfill}} \par
+                \uline{\hfill \makebox{\bf \nwpu@chs@advisor{\enspace}\nwpu@chs@advisorAcademicRank} \hfill}} \par
                 \makebox[\coverpage@detailwidth][s]{        %
                 \bf 培{\enspace}养{\enspace}单{\enspace}位}{%
                 \uline{\hfill \makebox{\bf \nwpu@chs@school} \hfill}} \par
@@ -632,7 +632,7 @@
             \vspace{7\baselineskip}                         % 7 * 10.5pt * 1.5
             \sSanhao \nwpu@chs@innerCoverFirstOption：\coverunderline[5.5cm]{\nwpu@chs@major} \\
             \sSanhao 作{\qquad}者：\coverunderline[5.5cm]{\nwpu@chs@author} \\
-            \sSanhao 指导教师：\coverunderline[5.5cm]{\nwpu@chs@advisor\nwpu@chs@advisorAcademicRank} \\
+            \sSanhao 指导教师：\coverunderline[5.5cm]{\nwpu@chs@advisor} \\
             \fSong \sWuhao \par                             %
             \vspace{2\baselineskip}                         % 2 * 10.5pt * 1.5
             \fSong \sSanhao \nwpu@chs@date                  %
@@ -648,7 +648,7 @@
         \linespread{1.2} \fEng \sXiaosan \par               % 1.2 倍行距
         \vspace{1\baselineskip}                             % 1 * 22pt * 1.2
         \begin{center}                                      %
-            \fEng \sErhao \textbf{Title:} \sErhao \textbf{\nwpu@eng@title} \par     %
+            \fEng \sErhao \textbf{Title:} \textbf{\nwpu@eng@title} \par     %
             \fSong \sXiaoer \vspace{3\baselineskip}         %
             \fEng \sXiaosan \textbf{By} \par                %
             \fEng \sXiaosan \textbf{\nwpu@eng@author} \par  %

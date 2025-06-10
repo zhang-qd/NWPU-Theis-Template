@@ -59,14 +59,15 @@
    \end{center}
   }
 \makeatother
-\usepackage[acronym]{glossaries} % 缩略表库
+
+\usepackage[acronym]{glossaries}                            % 缩略表库
 %%=============================================================================%
 %% 缩略语（也可以是独立文件）
 %%-----------------------------------------------------------------------------%
 \newacronym{npu}{西工大}{西北工业大学}
 \newglossaryentry{massEnergyFunc}{
-name = 质能方程,
-description = 一种阐述能量与质量间相互关系的理论物理学公式
+    name = 质能方程,
+    description = 一种阐述能量与质量间相互关系的理论物理学公式
 }
 \makeglossaries
 %%=============================================================================%
@@ -163,7 +164,7 @@ description = 一种阐述能量与质量间相互关系的理论物理学公式
 \school{航空学院}{School of Aeronautics}% 学院
 \major{力学}{Philosophy in Mechanics}                     % 专业 博士请添加 Ph
 \advisor{\blindreview{李四海}}{\blindreview{Sihai Li}}      % 导师（添加盲评标记）
-\advisorAcademicRank{教授}{Professor}   % 导师中英学术职位（教授 Professor、副教授 Associate Professor、研究员 Researcher 和讲师 Lecturer）
+\advisorAcademicRank{教授}{Professor}                       % 导师中英学术职位（教授 Professor、副教授 Associate Professor、研究员 Researcher 和讲师 Lecturer）
 \studentnumber{2016123456}                                  % 学号
 \funding{本研究得到玄学基金（编号23336666）资助。}{         % 基金资助
     The present work is supported by Funding of Metaphysics %
@@ -209,9 +210,9 @@ description = 一种阐述能量与质量间相互关系的理论物理学公式
 \end{engabstract}                                           % 英文摘要结束
 %%-----------------------------------------------------------------------------%
 \tableofcontents                                            % 目录
-\phantomsection\addcontentsline{toc}{chapter}{缩写表}   % 缩写表（学校未做要求）
-\printglossary[type=\acronymtype,title=缩写表]   % 缩写表（学校未做要求）
-\printglossary[title=术语表]   % 术语表（学校未做要求）
+\phantomsection\addcontentsline{toc}{chapter}{缩写表}        % 缩写表（学校未做要求）
+\printglossary[type=\acronymtype,title=缩写表]               % 缩写表（学校未做要求）
+\printglossary[title=术语表]                                 % 术语表（学校未做要求）
 \listoffigures                                              % 图目录（学校未做要求）
 \listoftables                                               % 表目录（学校未做要求）
 \printnomenclature                                          % 符号表（学校未做要求）
