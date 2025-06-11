@@ -785,6 +785,14 @@
     \addcontentsline{toc}{chapter}{\listtablename}          %
     \old@log \cleardoublepage                               %
 }                                                           %
+\let\old@pn\printnomenclature                               % 符号表
+\renewcommand{\printnomenclature}{                          %
+    \sDefault                                               %
+    \markboth{\nomname}{\nomname}                           %
+    \phantomsection                                         %
+    \addcontentsline{toc}{chapter}{\nomname}                %
+    \old@pn \cleardoublepage                                %
+}                                                           %                                                      %
 %%=============================================================================%
 %%=============================================================================%
 %% 参考文献及附录处理
@@ -819,6 +827,7 @@
 \appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
 \appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
 \appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
+\appto\printnomenclature{\addtocontents{nlo}{\protect\setcounter{tocdepth}{1}}}
 %%-----------------------------------------------------------------------------%
 \newcommand{\nwpu@chs@appendixname}[1]{附录 #1}             % 目录附录中文标题
 \newcommand{\nwpu@eng@appendixname}[1]{Appendix #1}         % 目录附录英文标题

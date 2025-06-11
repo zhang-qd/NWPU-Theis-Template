@@ -1801,6 +1801,14 @@ int main()
     \addcontentsline{toc}{chapter}{\listtablename}          %
     \old@log \cleardoublepage                               %
 }                                                           %
+\let\old@pn\printnomenclature                               % 符号表
+\renewcommand{\printnomenclature}{                          %
+    \sDefault                                               %
+    \markboth{\nomname}{\nomname}                           %
+    \phantomsection                                         %
+    \addcontentsline{toc}{chapter}{\nomname}                %
+    \old@pn \cleardoublepage                                %
+}                                                           %
 %%=============================================================================%
 %    \end{macrocode}
 %
@@ -1858,6 +1866,7 @@ int main()
 % reinstate the correct level for list of tables and figures
 \appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
 \appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
+\appto\printnomenclature{\addtocontents{nlo}{\protect\setcounter{tocdepth}{1}}}
 %%-----------------------------------------------------------------------------%
 %    \end{macrocode}
 % \markdtxchanges{v1.8.1}{2022/12/06}{附录格式修补}
