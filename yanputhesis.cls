@@ -392,6 +392,8 @@
     \renewcommand{\lstlistingname}{代码片段}                %
     \newcommand{\lstlistingautorefname}{代码片段}           %
     \renewcommand{\nomname}{符号表}                         %
+    \newcommand{\abbrevname}{缩写表}                        %
+    \newcommand{\termsname}{术语表}                         %
 \else                                                       % 英文引用提示文字
     \renewcommand{\figureautorefname}{Fig.}                 %
     \renewcommand{\tableautorefname}{Table}                 %
@@ -399,6 +401,8 @@
     \renewcommand{\lstlistingname}{Code Snippet}            %
     \newcommand{\lstlistingautorefname}{Code Snippet}       %
     \renewcommand{\nomname}{Symbols}                        %
+    \newcommand{\abbrevname}{Abbreviations}                 %
+    \newcommand{\termsname}{Glossary}                       %
 \fi                                                         %
 %%-----------------------------------------------------------------------------%
 \renewcommand{\chaptername}{第{\thechapter}章}              % 章节名
@@ -792,7 +796,23 @@
     \phantomsection                                         %
     \addcontentsline{toc}{chapter}{\nomname}                %
     \old@pn \cleardoublepage                                %
-}                                                           %                                                      %
+}                                                           %
+\newcommand{\printabbrev}[1][\abbrevname]{                     %
+    \sDefault                                                  %
+    \markboth{#1}{#1}                                          %
+    \phantomsection                                            %
+    \addcontentsline{toc}{chapter}{#1}                         %
+    \printglossary[type=\acronymtype,title={#1},nonumberlist]  %
+    \cleardoublepage                                           %
+}                                                              %
+\newcommand{\printterms}[1][\termsname]{                       %
+    \sDefault                                                  %
+    \markboth{#1}{#1}                                          %
+    \phantomsection                                            %
+    \addcontentsline{toc}{chapter}{#1}                         %
+    \printglossary[title={#1},nonumberlist]                    %
+    \cleardoublepage                                           %
+}                                                              %
 %%=============================================================================%
 %%=============================================================================%
 %% 参考文献及附录处理
@@ -828,6 +848,8 @@
 \appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
 \appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
 \appto\printnomenclature{\addtocontents{nlo}{\protect\setcounter{tocdepth}{1}}}
+\appto\printabbrev{\addtocontents{acn}{\protect\setcounter{tocdepth}{1}}}
+\appto\printterms{\addtocontents{glo}{\protect\setcounter{tocdepth}{1}}}
 %%-----------------------------------------------------------------------------%
 \newcommand{\nwpu@chs@appendixname}[1]{附录 #1}             % 目录附录中文标题
 \newcommand{\nwpu@eng@appendixname}[1]{Appendix #1}         % 目录附录英文标题

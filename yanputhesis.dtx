@@ -216,7 +216,8 @@ and the derived files           yanputhesis.ins,
   }
 \makeatother
 
-\usepackage[acronym]{glossaries}                            % 缩略表库
+\usepackage[acronym, nopostdot]{glossaries}              % 启用缩写功能并去掉后缀点
+\makeglossaries
 %%=============================================================================%
 %% 缩略语（也可以是独立文件）
 %%-----------------------------------------------------------------------------%
@@ -225,7 +226,6 @@ and the derived files           yanputhesis.ins,
     name = 质能方程,
     description = 一种阐述能量与质量间相互关系的理论物理学公式
 }
-\makeglossaries
 %%=============================================================================%
 %% 参考文献（也可以是独立文件）
 %%-----------------------------------------------------------------------------%
@@ -366,11 +366,10 @@ and the derived files           yanputhesis.ins,
 \end{engabstract}                                           % 英文摘要结束
 %%-----------------------------------------------------------------------------%
 \tableofcontents                                            % 目录
-\phantomsection\addcontentsline{toc}{chapter}{缩写表}        % 缩写表（学校未做要求）
-\printglossary[type=\acronymtype,title=缩写表]               % 缩写表（学校未做要求）
-\printglossary[title=术语表]                                 % 术语表（学校未做要求）
 \listoffigures                                              % 图目录（学校未做要求）
 \listoftables                                               % 表目录（学校未做要求）
+\printabbrev                                                % 缩写表（学校未做要求）
+\printterms                                                 % 术语表（学校未做要求）
 \printnomenclature                                          % 符号表（学校未做要求）
 %%-----------------------------------------------------------------------------%
 \mainmatter
@@ -1295,6 +1294,8 @@ int main()
     \renewcommand{\lstlistingname}{代码片段}                %
     \newcommand{\lstlistingautorefname}{代码片段}           %
     \renewcommand{\nomname}{符号表}                         %
+    \newcommand{\abbrevname}{缩写表}                        %
+    \newcommand{\termsname}{术语表}                         %
 \else                                                       % 英文引用提示文字
     \renewcommand{\figureautorefname}{Fig.}                 %
     \renewcommand{\tableautorefname}{Table}                 %
@@ -1302,6 +1303,8 @@ int main()
     \renewcommand{\lstlistingname}{Code Snippet}            %
     \newcommand{\lstlistingautorefname}{Code Snippet}       %
     \renewcommand{\nomname}{Symbols}                        %
+    \newcommand{\abbrevname}{Abbreviations}                 %
+    \newcommand{\termsname}{Glossary}                       %
 \fi                                                         %
 %%-----------------------------------------------------------------------------%
 %    \end{macrocode}
@@ -1809,6 +1812,22 @@ int main()
     \addcontentsline{toc}{chapter}{\nomname}                %
     \old@pn \cleardoublepage                                %
 }                                                           %
+\newcommand{\printabbrev}[1][\abbrevname]{                     %
+    \sDefault                                                  %
+    \markboth{#1}{#1}                                          %
+    \phantomsection                                            %
+    \addcontentsline{toc}{chapter}{#1}                         %
+    \printglossary[type=\acronymtype,title={#1},nonumberlist]  %
+    \cleardoublepage                                           %
+}                                                              %
+\newcommand{\printterms}[1][\termsname]{                       %
+    \sDefault                                                  %
+    \markboth{#1}{#1}                                          %
+    \phantomsection                                            %
+    \addcontentsline{toc}{chapter}{#1}                         %
+    \printglossary[title={#1},nonumberlist]                    %
+    \cleardoublepage                                           %
+}                                                              %
 %%=============================================================================%
 %    \end{macrocode}
 %
@@ -1867,6 +1886,8 @@ int main()
 \appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
 \appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
 \appto\printnomenclature{\addtocontents{nlo}{\protect\setcounter{tocdepth}{1}}}
+\appto\printabbrev{\addtocontents{acn}{\protect\setcounter{tocdepth}{1}}}
+\appto\printterms{\addtocontents{glo}{\protect\setcounter{tocdepth}{1}}}
 %%-----------------------------------------------------------------------------%
 %    \end{macrocode}
 % \markdtxchanges{v1.8.1}{2022/12/06}{附录格式修补}

@@ -44,11 +44,13 @@ endif
 
 texsample: $(MAIN)-sample.tex
 	$(TEX) $(TEXARGS) $<
+	makeglossaries $(MAIN)-sample
 	$(MKI) $(MAIN)-sample.nlo -s nomencl.ist -o $(MAIN)-sample.nls
 	$(TEX) $(TEXARGS) $<
 
 texsamplebib: $(MAIN)-sample.tex
 	$(TEX) $(TEXARGS) $<
+	makeglossaries $(MAIN)-sample
 	$(BIB) $(MAIN)-sample.aux
 	$(MKI) $(MAIN)-sample.nlo -s nomencl.ist -o $(MAIN)-sample.nls
 	$(TEX) $(TEXARGS) $<
