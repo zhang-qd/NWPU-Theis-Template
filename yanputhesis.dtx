@@ -320,7 +320,7 @@ and the derived files           yanputhesis.ins,
 \school{航空学院}{School of Aeronautics}% 学院
 \major{力学}{Philosophy in Mechanics}                     % 专业 博士请添加 Ph
 \advisor{\blindreview{李四海}}{\blindreview{Sihai Li}}      % 导师（添加盲评标记）
-\advisorAcademicRank{教授}{Professor}                       % 导师中英学术职位（教授 Professor、副教授 Associate Professor、研究员 Researcher 和讲师 Lecturer）
+\advisorAcademicRank{~教授}{Professor}                       % 导师中英学术职位（教授 Professor、副教授 Associate Professor、研究员 Researcher 和讲师 Lecturer）
 \studentnumber{2016123456}                                  % 学号
 \funding{本研究得到玄学基金（编号23336666）资助。}{         % 基金资助
     The present work is supported by Funding of Metaphysics %
@@ -1563,7 +1563,7 @@ int main()
     \settowidth{\chstitle@hwidthb}{\sYihao\nwpu@chs@doctitle}
     \begin{titlepage}                                       %
         \renewcommand{\baselinestretch}{1.5}                % 1.5 倍行距
-        \fSong \sSanhao \par \vspace{1\baselineskip}        % 1 * 21pt * 1.5
+        \fSong \sSanhao \par \vspace*{0.5\baselineskip}     % 0.5 * 21pt * 1.5
         \begin{center}                                      %
             \makebox[1.41667\chstitle@hwidtha][s]{\sSanhao\nwpu@chs@schoolname} \par
             \vspace*{5mm}                                   %
@@ -1607,21 +1607,22 @@ int main()
     \thispagestyle{empty}                                   % 清空页面格式
     \begin{titlepage}                                       %
         \linespread{1.2} \fEng \sXiaosan \par               % 1.2 倍行距
-        \vspace{1\baselineskip}                             % 1 * 22pt * 1.2
-        \begin{center}                                      %
-            \fEng \sErhao \textbf{Title:} \textbf{\nwpu@eng@title} \par     %
+        \vspace*{1\baselineskip}                             % 1 * 22pt * 1.2
+        \begin{center}
+            \fEng \sErhao \textbf{Title:}                                     %
+            \fEng \sSanhao \nwpu@eng@title \par     %
             \fSong \sXiaoer \vspace{3\baselineskip}         %
             \fEng \sXiaosan \textbf{By} \par                %
-            \fEng \sXiaosan \textbf{\nwpu@eng@author} \par  %
+            \fEng \sXiaosan \nwpu@eng@author \par  %
             \fEng \sXiaosan \textbf{Under the Supervision of \nwpu@eng@advisorAcademicRank} \\
-            \fEng \sXiaosan \textbf{\nwpu@eng@advisor} \par %
+            \fEng \sXiaosan \nwpu@eng@advisor \par %
             \fSong \sSanhao \vspace{4\baselineskip}         %
             \fEng \sXiaosan A Dissertation Submitted to \\  %
             \fEng \sXiaosan {\nwpu@eng@schoolname} \\       %
             \fSong \sSanhao \vspace{1\baselineskip}         %
             \fEng In Partial Fulfillment of The Requirement \\
             \fEng For The Degree of \\                      %
-            \fEng {\nwpu@eng@degree} of \textbf{\nwpu@eng@major}
+            \fEng {\nwpu@eng@degree} of \if@npu@type@mst\nwpu@eng@major\else\textbf{\nwpu@eng@major}\fi
             \fSong \sXiaosan \par \vspace{3\baselineskip}   %
             \fEng \sXiaosan Xi'an, P.R. China \\            %
             \fEng \sXiaosan {\nwpu@eng@date}                %
